@@ -11,6 +11,27 @@ const UsersList = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
 
+  const filteringHandle = (action) => {
+    console.log(action.target.name);
+    
+    let newArray = [] 
+  
+    if (action.target.name === "showUsers") {
+      newArray = users.filter((user) => {
+        return (user.usertype) === "User";
+      });
+    } else if (action.target.name === "showAdmins") {
+      newArray = users.filter((user) => {
+        return (user.usertype) === "Admin";
+      });
+    } else if (action.target.name === "showAll") {
+      newArray = users.filter((user) => {
+        return (user.usertype) === "All";
+      });
+    }
+    console.log(newArray);
+  };
+  
 
   const handleInputChange = (e) => {
     const target = e.target;
@@ -59,15 +80,15 @@ const UsersList = () => {
         </select>
         <button>Save</button>
       </form>
-      
+
       <div className="filterButtons">
-        <button onClick={() => filterUsers("Show Users")} name="showUsers">
+        <button onClick={(event) => filteringHandle(event)} name="showUsers">
           Show Users
         </button>
-        <button onClick={() => filterUsers("Show Admins")} name="showAdmins">
+        <button onClick={(event) => filteringHandle(event)} name="showAdmins">
           Show Admins
         </button>
-        <button onClick={() => filterUsers("Show All")} name="showAll">
+        <button onClick={(event) => filteringHandle(event)} name="showAll">
           Show All
         </button>
       </div>
