@@ -25,9 +25,7 @@ const UsersList = () => {
         return (user.usertype) === "Admin";
       });
     } else if (action.target.name === "showAll") {
-      newArray = users.filter((user) => {
-        return (user.usertype) === "All";
-      });
+      newArray = users;
     }
     console.log(newArray);
   };
